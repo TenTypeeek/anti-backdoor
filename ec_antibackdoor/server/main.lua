@@ -125,18 +125,29 @@ function SendDiscordWebhook(infectionsTable)
         return
     end
 
-    local contentString = "## Backdoors found\n\n"
-
+    local fields = {}
     for _, inf in ipairs(infectionsTable) do
-        contentString = contentString .. string.format("> - %s\n>  - %s\n>  - %s\n\n", inf.resource, inf.file, inf.domain)
+        table.insert(fields, {
+            name = "🚨 Resource: " .. inf.resource,
+            value = string.format("**File:** `%s`\n**Domain Detected:** `%s`", inf.file, inf.domain),
+            inline = false
+        })
     end
-
-    local dateStr = os.date("%Y-%m-%d %H:%M:%S")
-    contentString = contentString .. string.format("%s • Eclipse Development • AntiBackdoor", dateStr)
 
     local payload = {
         username = "Eclipse AntiBackdoor",
-        content = contentString
+        embeds = {
+            {
+                title = "⚠️ Security Alert — Malicious Resources Stopped",
+                color = 15158332, -- Red accent color
+                description = string.format("Detected **%d** backdoor threat(s). The affected resources were force-stopped.", #infectionsTable),
+                fields = fields,
+                footer = {
+                    text = "Eclipse Development • AntiBackdoor"
+                },
+                timestamp = os.date("!%Y-%m-%dT%H:%M:%SZ") -- ISO 8601 Timestamp
+            }
+        }
     }
 
     PerformHttpRequest(webhookUrl, function(err, text, headers) end, 'POST', json.encode(payload), { ['Content-Type'] = 'application/json' })
