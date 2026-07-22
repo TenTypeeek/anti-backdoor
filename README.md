@@ -38,13 +38,11 @@ Every day, leaked resources and fake "optimized" scripts circulate through the F
 - ✅ **Zero Framework Dependencies (Works on standalone, ESX, QB-Core, etc.)**
 
 ## 🛠️ Compatibility
-
 - ✅ **FiveM FXServer (Linux / Windows)**
 - ✅ **Framework Independent** (Runs standalone on any server)
 
 ## 📥 Installation
-
-0. Download the resource (ofc) https://github.com/TenTypeeek/Anti-Backdoor
+0. Download the resource (ofc)
 1. Download the resource and place `ec_antibackdoor` into your `resources` folder.
 2. Open `main.lua` and set your Discord Webhook URL:
 ```lua
@@ -58,6 +56,5 @@ That's it! Your server is now protected*.
 *this doesnt meant that you are 100% protected from all backdoors, there can still be some undetected backdoors
 
 ## ❤️ Open Source
-
 Eclipse AntiBackdoor is completely open source.
 Contributions, feature suggestions, and community pull requests are always welcome!
